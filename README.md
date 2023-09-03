@@ -1,1 +1,2 @@
-# ARDC Project
+# Crisis Management
+Crisis management is a complex problem to which responses have real world impacts. Often much of the data that is provided in a crsis is unstructured making it hard to retieve meaningful information; information that could be used by authorities and agencies to provide better services and care. This project aims to take unstructured data generated during a crisis and generate meaningful information. 
