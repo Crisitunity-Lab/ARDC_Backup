@@ -1,3 +1,1 @@
-io==3.12.0
 requests==2.31.0
-zipfile==3.12.0
