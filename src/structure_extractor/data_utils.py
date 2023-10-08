@@ -19,7 +19,7 @@ def combine_csv_files(folder_path, retrieve_label=True):
     for root, _, files in os.walk(folder_path):
         for file in files:
             # If the file is a CSV file get date
-            if file.endswith(file_suffix) and 'period' in file.lower():        
+            if file.endswith(file_suffix) and 'labeled' in file.lower():        
                 file_path = os.path.join(root, file)
                 csv_df = pd.read_csv(file_path)
 
