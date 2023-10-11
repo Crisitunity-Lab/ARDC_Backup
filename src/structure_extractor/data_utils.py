@@ -36,10 +36,10 @@ def combine_csv_files(folder_path, retrieve_label=True, retrieve_year=True,
                     csv_df["year"]=label[0:4]
 
                 if retrieve_country:
-                    csv_df=csv_df.assign(country_code=lambda x: _get_country_of_crisis(csv_df["label"]))
+                    csv_df["country_code"]=_get_country_of_crisis(label)
 
                 if retrieve_event:
-                    csv_df=csv_df.assign(crisis_type=lambda x: _get_crisis_type(label))
+                    csv_df["crisis_type"]=_get_crisis_type(label)
                 
                 # Concatenate new csv data to data frame
                 df=pd.concat([df, csv_df])
