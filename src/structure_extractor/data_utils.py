@@ -4,7 +4,7 @@ import pandas as pd
 import requests
 import zipfile
 
-from structure_extractor.config import Configuration as cfg
+from .config import Configuration as cfg
 
 def unzip_from_url(src, dest="./"):
     zip_data = requests.get(src)
