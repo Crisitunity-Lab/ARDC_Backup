@@ -33,7 +33,7 @@ def combine_csv_files(folder_path, retrieve_label=True, retrieve_year=True,
                 
                 # Get the year of the event from the label
                 if retrieve_year:
-                    csv_df["year"]=label[0:4]
+                    csv_df["year"]=_get_year_of_crisis(label)
 
                 if retrieve_country:
                     csv_df["country_code"]=_get_country_of_crisis(label)
@@ -45,6 +45,11 @@ def combine_csv_files(folder_path, retrieve_label=True, retrieve_year=True,
                 df=pd.concat([df, csv_df])
 
     return df
+
+
+def _get_year_of_crisis(crisis):
+    year=crisis[0:4]
+    return year
 
 
 def _get_country_of_crisis(crisis):

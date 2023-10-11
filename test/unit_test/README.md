@@ -1,0 +1,2 @@
+## Running Unit Tests
+To run unit tests use the command `python -m unittest test.unit_test.unit_test_structure_extractor`. This command should be run in a terminal window in the base folder of this repo.
