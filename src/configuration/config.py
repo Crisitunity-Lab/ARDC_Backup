@@ -1,5 +1,5 @@
 
-class Configurstion:
+class Configuration:
     countries = dict({
         '2012_Colorado_wildfires':'US',
         '2013_Colorado_floods':'US',
