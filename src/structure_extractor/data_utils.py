@@ -36,7 +36,7 @@ def combine_csv_files(folder_path, retrieve_label=True, retrieve_year=True,
                     csv_df["year"]=label[0:4]
 
                 if retrieve_country:
-                    csv_df=csv_df.assign(country_code=lambda x: _get_country_of_crisis(label))
+                    csv_df=csv_df.assign(country_code=lambda x: _get_country_of_crisis(csv_df["label"]))
 
                 if retrieve_event:
                     csv_df=csv_df.assign(crisis_type=lambda x: _get_crisis_type(label))
@@ -49,11 +49,11 @@ def combine_csv_files(folder_path, retrieve_label=True, retrieve_year=True,
 
 def _get_country_of_crisis(crisis):
     mapping = cfg.countries
-    country = crisis.map(mapping)
+    country = mapping[crisis]
     return country
 
 
 def _get_crisis_type(crisis):
     mapping = cfg.crisis_type
-    event = crisis.map(mapping)
+    event = mapping[crisis]
     return event
