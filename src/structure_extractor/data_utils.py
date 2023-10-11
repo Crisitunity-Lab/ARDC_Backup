@@ -33,7 +33,7 @@ def combine_csv_files(folder_path, retrieve_label=True, retrieve_year=True,
                 
                 # Get the year of the event from the label
                 if retrieve_year:
-                    csv_df["year"]=label.str[0:4]
+                    csv_df["year"]=label[0:4]
 
                 if retrieve_country:
                     csv_df=csv_df.assign(country_code=lambda x: _get_country_of_crisis(label))
