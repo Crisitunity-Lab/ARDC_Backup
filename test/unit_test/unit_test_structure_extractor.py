@@ -24,3 +24,17 @@ class TestStructureExtractor(unittest.TestCase):
         expected = "Train Crash"
         actual = du._get_crisis_type(event)
         self.assertEqual(expected, actual)
+
+
+    def test_message_length_1(self):
+        message = "#korea #usa #news Deadly storms and floods in Sardinia: At least nine people are killed and a number are missi...  http://t.co/PQsiQsTEZX"
+        expected = 17
+        actual = du._get_message_length(message)
+        self.assertEqual(expected, actual)
+
+
+    def test_message_length_2(self):
+        message = "RT @BBCBreaking: Photo shows #helicopter crash at #Clutha pub in Glasgow http://t.co/cYMa37HdjM &amp; http://t.co/gY03CIFj80"
+        expected = 9
+        actual = du._get_message_length(message)
+        self.assertEqual(expected, actual)

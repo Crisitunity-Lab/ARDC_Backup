@@ -1,6 +1,7 @@
 import io
 import os
 import pandas as pd
+import re
 import requests
 import zipfile
 
@@ -13,7 +14,7 @@ def unzip_from_url(src, dest="./"):
     print("Download and Unzip complete")
 
 def combine_csv_files(folder_path, retrieve_label=True, retrieve_year=True,
-                      retrieve_country=True, retrieve_event=True):
+                      retrieve_country=True, retrieve_event=True, min_tweet_len=6):
     df = pd.DataFrame()
     file_suffix=".csv"
 
@@ -26,6 +27,10 @@ def combine_csv_files(folder_path, retrieve_label=True, retrieve_year=True,
                 csv_df = pd.read_csv(file_path)
 
                 label=os.path.basename(os.path.dirname(file_path))
+
+                # If min tweet length is zero then nothing to do else exlcude these records
+                if min_tweet_len != 0:
+                    csv_df=csv_df[csv_df.apply(lambda x: _get_message_length(x["TweetText"])>=min_tweet_len, axis=1)]
 
                 # Get the subfolder and store as the label
                 if retrieve_label:
@@ -62,3 +67,9 @@ def _get_crisis_type(crisis):
     mapping = cfg.crisis_type
     event = mapping[crisis]
     return event
+
+
+def _get_message_length(message):
+    words=re.sub(r'#\S+|@\S+|http\S+', '', message).split()
+    num_of_words=len(words)
+    return num_of_words
