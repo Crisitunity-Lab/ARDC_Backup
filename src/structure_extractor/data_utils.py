@@ -28,6 +28,9 @@ def combine_csv_files(folder_path, retrieve_label=True, retrieve_year=True,
 
                 label=os.path.basename(os.path.dirname(file_path))
 
+                # Remove leading spaces from column names
+                csv_df.columns = csv_df.columns.str.lstrip()
+
                 # If min tweet length is zero then nothing to do else exlcude these records
                 if min_tweet_len != 0:
                     csv_df=csv_df[csv_df.apply(lambda x: _get_message_length(x["Tweet Text"])>=min_tweet_len, axis=1)]
